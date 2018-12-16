@@ -1,6 +1,9 @@
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
+from kivy.uix.dropdown import DropDown
 
+class ProductListDropDown(DropDown):
+    pass
 class AIOTabbed(TabbedPanel):
     pass
 
