@@ -6,6 +6,7 @@ Kivy==1.10.1
 Kivy-Garden==0.1.4
 kivy.deps.glew==0.1.10
 kivy.deps.sdl2==0.1.18
+pycryptodome==3.7.2
 Pygments==2.3.0
 pypiwin32==223
 pywin32==224
