@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
+from supreme_client import supreme_pick_and_fill
 
 class AIOTabbed(TabbedPanel):
     def __init__(self, **kwargs):
@@ -15,9 +16,8 @@ class AIOTabbed(TabbedPanel):
             if productType == text:
                 self.ids.productsType_spinner.text = text
 
-    def updateProductKeyword(self, text):
-        print(self.ids.productKeyword_ti.text)
-        self.ids.productKeyword_ti.text = text
+    def launchSupreme(self):
+        supreme_pick_and_fill(self.ids.productsType_spinner.text, self.ids.productKeyword_ti.text)
 
 class AIOKivyApp(App):
     def build(self):
