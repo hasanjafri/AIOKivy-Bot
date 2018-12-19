@@ -5,6 +5,77 @@
     do_default_tab: False
 
     TabbedPanelItem:
+        text: 'Configuration'
+        GridLayout:
+            rows: 11
+            cols: 2
+            Label:
+                text: 'Name:'
+            TextInput:
+                id: nameInput
+                multiline: True
+                hint_text: "Your Name"
+            Label:
+                text: 'Email:'
+            TextInput:
+                id: emailInput
+                multiline: True
+                hint_text: "Your Email"
+            Label:
+                text: 'Phone Number:'
+            TextInput:
+                id: phNumberInput
+                multiline: True
+                hint_text: "Your Phone Number"
+            Label:
+                text: 'Street Address:'
+            TextInput:
+                id: addressInput
+                multiline: True
+                hint_text: "Your Address"
+            Label:
+                text: 'City:'
+            TextInput:
+                id: cityInput
+                multiline: True
+                hint_text: "Your City"
+            Label:
+                text: 'Country:'
+            TextInput:
+                id: countryInput
+                multiline: True
+                hint_text: "Your Country"
+            Label:
+                text: 'State:'
+            TextInput:
+                id: stateInput
+                multiline: True
+                hint_text: "Your State"
+            Label:
+                text: 'Zip Code:'
+            TextInput:
+                id: zipCodeInput
+                multiline: True
+                hint_text: "Your Zip Code"
+            Label:
+                text: 'Card Number:'
+            TextInput:
+                id: cNumberInput
+                multiline: True
+                hint_text: "Your Card Number"
+            Label:
+                text: 'Expiry Month:'
+            TextInput:
+                id: expiryMonthInput
+                multiline: True
+                hint_text: "Expiry month for this card"
+            Label:
+                text: 'Expiry Year:'
+            TextInput:
+                id: expiryYearInput
+                multiline: True
+                hint_text: "Expiry year for this card"
+    TabbedPanelItem:
         text: 'Nike'
         Label:
             text: 'First tab content area'
@@ -18,7 +89,7 @@
     TabbedPanelItem:
         text: 'Supreme'
         GridLayout:
-            rows: 11
+            rows: 3
             cols: 2
             padding: 10
             spacing: 10
@@ -27,7 +98,7 @@
             Spinner:
                 id: productsType_spinner
                 text: 'SELECT'
-                size_hint: (1, .1)
+                size_hint: (1, .2)
                 pos_hint: {'center_x': .5, 'center_y': .5}
                 values: root.supremeProductTypes
                 on_text: root.updateProductsTypeSpinner(productsType_spinner.text)
@@ -45,5 +116,7 @@
             Button:
                 text: 'Launch'
                 on_press: root.launchSupreme()
+            Label:
+                id: responseLabel
             
             

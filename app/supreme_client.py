@@ -9,7 +9,7 @@ def supreme_pick_and_fill(productType, productKeyword):
     driver = webdriver.Chrome('./chromedriver')
     driver.get("https://www.supremenewyork.com/shop/all/" + productType)
     driver.find_elements_by_xpath("//*[contains(text(), '"+productKeyword+"')]")[0].click()
-    time.sleep(.5)
+    time.sleep(.7)
 
     driver.find_element_by_name('commit').click()
 
