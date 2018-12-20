@@ -7,7 +7,7 @@
     TabbedPanelItem:
         text: 'Configuration'
         GridLayout:
-            rows: 11
+            rows: 12
             cols: 2
             Label:
                 text: 'Name:'
@@ -63,6 +63,12 @@
                 id: cNumberInput
                 multiline: True
                 hint_text: "Your Card Number"
+            Label:
+                text: 'Card CVV:'
+            TextInput:
+                id: cvvInput
+                multiline: False
+                hint_text: "Your Card 3 Digit CVV"
             Label:
                 text: 'Expiry Month:'
             TextInput:
