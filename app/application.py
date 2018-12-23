@@ -6,6 +6,7 @@ from kivy.uix.popup import Popup
 import os
 from pathlib import Path
 from supreme_client import supreme_pick_and_fill
+from utils import generate_safe_config_file, decrypt_config_file
 from sys import platform
 
 class AIOTabbed(TabbedPanel):
@@ -34,7 +35,7 @@ class AIOTabbed(TabbedPanel):
                     self.ids.responseLabel.text = "Error! You can't leave {} blank!".format(inputId)
                     return
                 else:
-                    self.configValues[inputId] = self.ids[inputId]
+                    self.configValues[inputId] = self.ids[inputId].text
 
         if platform == 'win32':
             if not Path('./chromedriver.exe').is_file():
@@ -53,26 +54,40 @@ class AIOTabbed(TabbedPanel):
 
     def show_load(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
-        self._popup = Popup(title="Load file", content=content,
+        self._popup = Popup(title="Load Config File", content=content,
                             size_hint=(0.9, 0.9))
         self._popup.open()
 
     def show_save(self):
+        self.configValues = {}        
+        for inputId in self.ids.keys():
+            if 'Input' in inputId:
+                if self.ids[inputId].text == '':
+                    self.ids.file_inputLabel.text = "Error! You can't leave {} blank!".format(inputId)
+                    return
+                else:
+                    self.configValues[inputId] = self.ids[inputId].text
+
         content = SaveDialog(save=self.save, cancel=self.dismiss_popup)
-        self._popup = Popup(title="Save file", content=content,
+        self._popup = Popup(title="Save Config File", content=content,
                             size_hint=(0.9, 0.9))
         self._popup.open()
 
     def load(self, path, filename):
         with open(os.path.join(path, filename[0])) as stream:
-            self.text_input.text = stream.read()
+            encrypted_dict = stream.read()
+            decrypted_dict = decrypt_config_file(encrypted_dict)
 
         self.dismiss_popup()
 
     def save(self, path, filename):
-        with open(os.path.join(path, filename), 'w') as stream:
-            stream.write(self.text_input.text)
+        print(self.configValues)
+        data = generate_safe_config_file(self.configValues)
 
+        with open(os.path.join(path, filename), 'wb') as stream:
+            stream.write(data)
+
+        self.ids.file_inputLabel.text = "Success! Config file saved at: {}".format(os.path.join(path, filename))
         self.dismiss_popup()
 
 class AIOKivyApp(App):

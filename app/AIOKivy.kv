@@ -11,90 +11,135 @@
             cols: 2
             Label:
                 text: 'Name:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: nameInput
                 multiline: True
                 hint_text: "Your Name"
             Label:
                 text: 'Email:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: emailInput
                 multiline: True
                 hint_text: "Your Email"
             Label:
                 text: 'Phone Number:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: phNumberInput
                 multiline: True
                 hint_text: "Your Phone Number"
             Label:
                 text: 'Street Address:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: addressInput
                 multiline: True
                 hint_text: "Your Address"
             Label:
                 text: 'City:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: cityInput
                 multiline: True
                 hint_text: "Your City"
             Label:
                 text: 'Country:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: countryInput
                 multiline: True
                 hint_text: "Your Country"
             Label:
                 text: 'State:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: stateInput
                 multiline: True
                 hint_text: "Your State"
             Label:
                 text: 'Zip Code:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: zipCodeInput
                 multiline: True
                 hint_text: "Your Zip Code"
             Label:
                 text: 'Card Number:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: cNumberInput
                 multiline: True
                 hint_text: "Your Card Number"
             Label:
                 text: 'Card CVV:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: cvvInput
                 multiline: False
                 hint_text: "Your Card 3 Digit CVV"
             Label:
                 text: 'Expiry Month:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: expiryMonthInput
                 multiline: True
                 hint_text: "Expiry month for this card"
             Label:
                 text: 'Expiry Year:'
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: expiryYearInput
                 multiline: True
                 hint_text: "Expiry year for this card"
+            Label:
+                id: file_inputLabel
+            TextInput:
+                id: file_inputTitle
+                disabled: True
             Button:
                 text: 'Load Config File'
                 on_release: root.show_load()
             Button:
                 text: 'Save Config File'
                 on_release: root.show_save()
-            BoxLayout:
-                TextInput:
-                    id: text_input
-                    text: ''
-
-                RstDocument:
-                    text: text_input.text
-                    show_errors: True
     TabbedPanelItem:
         text: 'Nike'
         Label:

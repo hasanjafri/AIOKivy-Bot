@@ -36,5 +36,3 @@ def supreme_pick_and_fill(productType, productKeyword, keys):
 
     process_payment = driver.find_element_by_xpath('//*[@id="pay"]/input')
     process_payment.click()
-
-
