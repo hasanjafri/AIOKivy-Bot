@@ -46,8 +46,8 @@ class AIOTabbed(TabbedPanel):
                 self.ids.responseLabel.text = "Error! No chromedriver executable found for your system." 
                 return
         
-        supreme_pick_and_fill(self.ids.productsType_spinner.text, self.ids.productKeyword_ti.text, self.configValues)
-        self.ids.responseLabel.text = "Please follow your transaction on the Chromedriver itself."
+        resp = supreme_pick_and_fill(self.ids.productsType_spinner.text, self.ids.productKeyword_ti.text, self.configValues)
+        self.ids.responseLabel.text = resp
 
     def dismiss_popup(self):
         self._popup.dismiss()
