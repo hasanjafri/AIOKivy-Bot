@@ -1,10 +1,18 @@
+from dialogs import LoadDialog, SaveDialog
 from kivy.app import App
 from kivy.uix.tabbedpanel import TabbedPanel
+from kivy.properties import ObjectProperty
+from kivy.uix.popup import Popup
+import os
 from pathlib import Path
 from supreme_client import supreme_pick_and_fill
 from sys import platform
 
 class AIOTabbed(TabbedPanel):
+    loadfile = ObjectProperty(None)
+    savefile = ObjectProperty(None)
+    text_input = ObjectProperty(None)
+
     def __init__(self, **kwargs):
         self.getSupremeProductTypes()
         super(AIOTabbed, self).__init__(**kwargs)
@@ -39,6 +47,33 @@ class AIOTabbed(TabbedPanel):
         
         supreme_pick_and_fill(self.ids.productsType_spinner.text, self.ids.productKeyword_ti.text, self.configValues)
         self.ids.responseLabel.text = "Please follow your transaction on the Chromedriver itself."
+
+    def dismiss_popup(self):
+        self._popup.dismiss()
+
+    def show_load(self):
+        content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
+        self._popup = Popup(title="Load file", content=content,
+                            size_hint=(0.9, 0.9))
+        self._popup.open()
+
+    def show_save(self):
+        content = SaveDialog(save=self.save, cancel=self.dismiss_popup)
+        self._popup = Popup(title="Save file", content=content,
+                            size_hint=(0.9, 0.9))
+        self._popup.open()
+
+    def load(self, path, filename):
+        with open(os.path.join(path, filename[0])) as stream:
+            self.text_input.text = stream.read()
+
+        self.dismiss_popup()
+
+    def save(self, path, filename):
+        with open(os.path.join(path, filename), 'w') as stream:
+            stream.write(self.text_input.text)
+
+        self.dismiss_popup()
 
 class AIOKivyApp(App):
     def build(self):
