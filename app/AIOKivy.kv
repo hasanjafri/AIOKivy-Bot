@@ -131,6 +131,10 @@
                 hint_text: "Expiry year for this card"
             Label:
                 id: file_inputLabel
+                size: self.texture_size
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
             TextInput:
                 id: file_inputTitle
                 disabled: True
@@ -191,6 +195,7 @@
         orientation: "vertical"
         FileChooserListView:
             id: filechooser
+            path: './'
 
         BoxLayout:
             size_hint_y: None
@@ -211,6 +216,7 @@
         orientation: "vertical"
         FileChooserListView:
             id: filechooser
+            path: './'
             on_selection: text_input.text = self.selection and self.selection[0] or ''
 
         TextInput:

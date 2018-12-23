@@ -74,10 +74,16 @@ class AIOTabbed(TabbedPanel):
         self._popup.open()
 
     def load(self, path, filename):
-        with open(os.path.join(path, filename[0])) as stream:
+        with open(os.path.join(path, filename[0]), "rb") as stream:
             encrypted_dict = stream.read()
-            decrypted_dict = decrypt_config_file(encrypted_dict)
+        
+        decrypted_dict = decrypt_config_file(encrypted_dict)
 
+        for inputId in decrypted_dict.keys():
+            self.ids[inputId].text = decrypted_dict[inputId]
+
+        self.ids.file_inputLabel.text = "Success! Config file loaded from:"
+        self.ids.file_inputTitle.text = os.path.join(path, filename[0])
         self.dismiss_popup()
 
     def save(self, path, filename):
@@ -87,7 +93,8 @@ class AIOTabbed(TabbedPanel):
         with open(os.path.join(path, filename), 'wb') as stream:
             stream.write(data)
 
-        self.ids.file_inputLabel.text = "Success! Config file saved at: {}".format(os.path.join(path, filename))
+        self.ids.file_inputLabel.text = "Success! Config file saved at:"
+        self.ids.file_inputTitle.text = os.path.join(path, filename)
         self.dismiss_popup()
 
 class AIOKivyApp(App):
