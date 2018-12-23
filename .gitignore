@@ -110,4 +110,5 @@ venv.bak/
 chromedriver.exe
 
 #config
-config.py
+key.txt
+config
