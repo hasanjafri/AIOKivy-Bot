@@ -7,7 +7,7 @@
     TabbedPanelItem:
         text: 'Configuration'
         GridLayout:
-            rows: 12
+            rows: 13
             cols: 2
             Label:
                 text: 'Name:'
@@ -81,6 +81,12 @@
                 id: expiryYearInput
                 multiline: True
                 hint_text: "Expiry year for this card"
+            Button:
+                text: 'Load Config File'
+                on_press: root.launchSupreme()
+            Button:
+                text: 'Save Config File'
+                on_press: root.launchSupreme()
     TabbedPanelItem:
         text: 'Nike'
         Label:

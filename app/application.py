@@ -22,19 +22,23 @@ class AIOTabbed(TabbedPanel):
         self.configValues = {}        
         for inputId in self.ids.keys():
             if 'Input' in inputId:
-                if self.ids[inputId] == '':
+                if self.ids[inputId].text == '':
                     self.ids.responseLabel.text = "Error! You can't leave {} blank!".format(inputId)
+                    return
                 else:
                     self.configValues[inputId] = self.ids[inputId]
 
         if platform == 'win32':
             if not Path('./chromedriver.exe').is_file():
                 self.ids.responseLabel.text = "Error! No chromedriver executable found for your system."
-        elif not Path('./chromedriver').is_file():
-                self.ids.responseLabel.text = "Error! No chromedriver executable found for your system." 
+                return
         else:
-            supreme_pick_and_fill(self.ids.productsType_spinner.text, self.ids.productKeyword_ti.text, self.configValues)
-            self.ids.responseLabel.text = "Please follow your transaction on the Chromedriver itself."
+            if not Path('./chromedriver').is_file():
+                self.ids.responseLabel.text = "Error! No chromedriver executable found for your system." 
+                return
+        
+        supreme_pick_and_fill(self.ids.productsType_spinner.text, self.ids.productKeyword_ti.text, self.configValues)
+        self.ids.responseLabel.text = "Please follow your transaction on the Chromedriver itself."
 
 class AIOKivyApp(App):
     def build(self):
