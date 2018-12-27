@@ -23,7 +23,6 @@ def check_keyfile_exists():
 
 def generate_safe_config_file(info):
     key = check_keyfile_exists()
-    print(key)
     des = DES.new(key.encode('utf-8'), DES.MODE_ECB)
     padded_dict = pad(json.dumps(info))
     encrypted_dict = des.encrypt(padded_dict.encode('utf-8'))
@@ -34,5 +33,4 @@ def decrypt_config_file(encryptedInfo):
     des = DES.new(key.encode('utf-8'), DES.MODE_ECB)
     decrypted_dict = des.decrypt(encryptedInfo)
     decrypted_dict = decrypted_dict.decode('utf-8')
-    print(json.loads(decrypted_dict))
     return json.loads(decrypted_dict)

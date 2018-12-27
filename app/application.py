@@ -6,15 +6,12 @@ from kivy.uix.popup import Popup
 import os
 from pathlib import Path
 from supreme_client import supreme_pick_and_fill
-from utils import generate_safe_config_file, decrypt_config_file
+from utils import generate_safe_config_file, decrypt_config_file, check_keyfile_exists
 from sys import platform
 
 class AIOTabbed(TabbedPanel):
-    loadfile = ObjectProperty(None)
-    savefile = ObjectProperty(None)
-    text_input = ObjectProperty(None)
-
     def __init__(self, **kwargs):
+        check_keyfile_exists()
         self.getSupremeProductTypes()
         super(AIOTabbed, self).__init__(**kwargs)
 
@@ -22,7 +19,6 @@ class AIOTabbed(TabbedPanel):
         self.supremeProductTypes = ['Jackets', 'Shirts', 'Tops/Sweaters', 'Sweatshirts', 'Pants', 'T-Shirts', 'Hats', 'Accessories', 'Shoes', 'Skate']
 
     def updateProductsTypeSpinner(self, text):
-
         for productType in self.supremeProductTypes:
             if productType == text:
                 self.ids.productsType_spinner.text = text
